@@ -1,0 +1,14 @@
+.input {
+    display: inline;
+    
+}
+
+.input__input {
+    outline: 0;
+    width: 50%;
+    align-items: center;
+}
+
+.input__button {
+
+}
