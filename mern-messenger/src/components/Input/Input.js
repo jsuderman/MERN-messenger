@@ -26,9 +26,7 @@ function InputField() {
         ]);
         setInput('');
     }
-    const onChange = () => {
-
-    }
+   
 
     return (
         <div className="input">
@@ -49,7 +47,7 @@ function InputField() {
 
             </form>
             {messages.map(message => (
-                <Message username={message.username} text={message.text} />
+                <Message username={username} message={message} />
                 
             ))
             }
