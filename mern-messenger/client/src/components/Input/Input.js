@@ -4,6 +4,7 @@ import "./Input.css";
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import axios from '../../axios';
 import Pusher from "pusher-js";
+import FlipMove from "react-flip-move";
 
 const pusher = new Pusher('57cd75778200c86ff161', {
     cluster: 'us3'
@@ -16,6 +17,13 @@ function InputField() {
     const [messages, setMessages] = useState([]);
     console.log(input);
     console.log(messages);
+
+    useEffect(() => {
+        axios.get('/retrieve/conversation')
+        .then((res) => {
+            setMessages(res.data)
+        })
+    }, [])
 
 
     useEffect(() => {
@@ -70,11 +78,19 @@ function InputField() {
 
 
             </form>
-            {messages.map(message => (
-                <Message key={message.id} username={username} message={message} />
 
-            ))
-            }
+            <FlipMove>
+                {
+                    messages.map(message => (
+                        <Message key={message.id} username={username} message={message} />
+
+                    ))
+                }
+
+
+            </FlipMove>
+
+            
 
         </div>
     )
