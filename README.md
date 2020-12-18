@@ -3,7 +3,7 @@ MERN-messenger is a chatroom where friends can chat together and see messages sl
 
 ### `Description`
 This Full Stack app is a simple place for friends to come and chat.  Messages are updated in real time and placed based on who wrote them. All messages are saved in the database.
-![screenshot](MERN-chatroom.png)
+![screenshot](./MERN-chatroom.png)
 
 
 ### `Demo`
