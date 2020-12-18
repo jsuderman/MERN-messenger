@@ -4,8 +4,32 @@
 }
 
 .input__input {
-    outline: 0;
-    width: 50%;
-    align-items: center;
+    flex: 1;
+    width: 100%;
+    align-content: center;
 }
 
+.input__form {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: lightgrey;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    margin: 20px;
+}
+
+.input__form > Input {
+    width: 100%;
+}
+
+.input__formControl {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.input__button {
+    flex: 0 !important;
+}

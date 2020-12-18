@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Message from "../Message/Message";
 import "./Input.css";
-import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
+import { FormControl, Input } from "@material-ui/core";
 import axios from '../../axios';
 import Pusher from "pusher-js";
 import FlipMove from "react-flip-move";
+import SubdirectoryArrowRightSharpIcon from '@material-ui/icons/SubdirectoryArrowRightSharp';
+import { IconButton } from '@material-ui/core';
+
 
 const pusher = new Pusher('57cd75778200c86ff161', {
     cluster: 'us3'
@@ -20,9 +23,9 @@ function InputField() {
 
     useEffect(() => {
         axios.get('/retrieve/conversation')
-        .then((res) => {
-            setMessages(res.data)
-        })
+            .then((res) => {
+                setMessages(res.data)
+            })
     }, [])
 
 
@@ -32,7 +35,7 @@ function InputField() {
             sync()
         });
     }, [username])
-    
+
 
     const sync = async () => {
         await axios.get('/retrieve/conversation')
@@ -63,17 +66,27 @@ function InputField() {
     return (
         <div className="input">
             <h2>welcome {username}</h2>
-            <form>
+            <form className="input__form">
 
-                <FormControl>
-                    <InputLabel>Enter Your Message</InputLabel>
+                <FormControl className="input__formControl">
+                    
                     <Input
+                        placeholder='enter message...'
                         className="input__input"
                         value={input}
                         onChange={event => setInput(event.target.value)}
                         type="text"
                     />
-                    <Button disabled={!input} variant='contained' type='submit' onClick={sendMessage} className="input__button">Send Message</Button>
+                    <IconButton
+                    disabled={!input} 
+                    variant='contained' 
+                    type='submit' 
+                    onClick={sendMessage} 
+                    className="input__button"
+                    >
+                    <SubdirectoryArrowRightSharpIcon />
+                    </IconButton>
+                   
                 </FormControl>
 
 
@@ -82,7 +95,7 @@ function InputField() {
             <FlipMove>
                 {
                     messages.map(message => (
-                        <Message key={message.id} username={username} message={message} />
+                        <Message key={message._id} username={username} message={message} />
 
                     ))
                 }
@@ -90,7 +103,7 @@ function InputField() {
 
             </FlipMove>
 
-            
+
 
         </div>
     )
